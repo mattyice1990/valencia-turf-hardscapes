@@ -1,4 +1,4 @@
-# ✅ GitHub + Vercel Setup Complete!
+# ✅ GitHub + Vercel Setup - UPDATED!
 
 ## 🎉 What's Done:
 
@@ -6,17 +6,23 @@
 ✅ GitHub repository created: https://github.com/mattyice1990/valencia-turf-hardscapes
 ✅ Code pushed to GitHub
 ✅ Deployed to Vercel production
+✅ Latest changes deployed (November 9, 2025)
 
 ## 🌐 Your Live URLs:
 
-**Production Site:**
-https://valencia-turf-hardscapes-6z94nw62m-mattyice1990s-projects.vercel.app
+**Production Site (Latest):**
+https://valencia-turf-hardscapes-epgy3i2qq-mattyice1990s-projects.vercel.app
 
 **GitHub Repository:**
 https://github.com/mattyice1990/valencia-turf-hardscapes
 
 **Vercel Dashboard:**
 https://vercel.com/mattyice1990s-projects/valencia-turf-hardscapes
+
+## ⚠️ IMPORTANT: Automatic Deployments NOT Yet Connected
+
+Currently, you need to manually deploy using `vercel --prod` after pushing to GitHub.
+To enable automatic deployments, follow the instructions below.
 
 ---
 
@@ -44,13 +50,13 @@ To enable automatic deployments whenever you push to GitHub:
 
 ---
 
-## 📝 Your Workflow Now:
+## 📝 Your Current Workflow:
 
-### Making Updates (Super Easy!)
+### Making Updates
 
 1. **Edit your files** in VS Code or Cursor
 
-2. **Test locally:**
+2. **Test locally (optional):**
    ```bash
    python -m http.server 8000
    ```
@@ -64,11 +70,13 @@ To enable automatic deployments whenever you push to GitHub:
    git push
    ```
 
-4. **Automatic deployment!**
-   - Vercel detects the push
-   - Builds and deploys automatically
-   - Live in ~30 seconds
-   - No need to run `vercel` command!
+4. **Deploy to Vercel (MANUAL - until auto-deploy is connected):**
+   ```bash
+   cd "C:\Valencia Turf"
+   vercel --prod
+   ```
+   
+   ⚠️ **Note:** Once you connect GitHub to Vercel (see above), step 4 will be automatic!
 
 ### Example: Adding a New Project Photo
 
@@ -78,12 +86,15 @@ cd "C:\Valencia Turf"
 # 1. Add new image to images/ folder
 # 2. Update gallery.html to include it
 
-# 3. Commit and push
+# 3. Commit and push to GitHub
 git add .
 git commit -m "Add new project photos to gallery"
 git push
 
-# ✅ Site updates automatically!
+# 4. Deploy to Vercel (manual for now)
+vercel --prod
+
+# ✅ Site is now live with your changes!
 ```
 
 ---

@@ -1505,6 +1505,13 @@ footer {
     padding: 1rem 0;
 }
 
+@media (max-width: 1024px) {
+    .services-nav-sticky,
+    .resources-nav-sticky {
+        top: 96px; /* Match mobile header height */
+    }
+}
+
 .services-nav-container,
 .resources-nav-container {
     max-width: 1200px;
@@ -2781,13 +2788,19 @@ footer {
 /* Responsive - Tablet and Mobile */
 @media (max-width: 1024px) {
     /* Tablet/Mobile Navigation - Show hamburger menu on tablets too */
+    
+    /* Fix hero margin to match actual header height on mobile */
+    .hero {
+        margin-top: 96px; /* Match mobile header height */
+    }
+    
     .nav-links {
         position: fixed;
-        top: 70px;
+        top: 96px; /* Match actual header height */
         right: -100%;
         width: 80%;
         max-width: 350px;
-        height: calc(100vh - 70px);
+        height: calc(100vh - 96px);
         background: var(--white);
         flex-direction: column;
         align-items: flex-start;
@@ -3550,9 +3563,15 @@ footer {
     padding: 0.75rem 5%;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     position: sticky;
-    top: 80px;
+    top: 70px; /* Below desktop header */
     z-index: 999;
     transition: all 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+    .breadcrumb {
+        top: 96px; /* Match mobile header height */
+    }
 }
 
 .breadcrumb ol {
@@ -3596,7 +3615,7 @@ footer {
 
 @media (max-width: 768px) {
     .breadcrumb {
-        top: 70px;
+        top: 96px; /* Match mobile header height */
         padding: 0.5rem 4%;
         font-size: 0.85rem;
     }

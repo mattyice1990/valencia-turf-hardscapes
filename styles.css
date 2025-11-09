@@ -328,6 +328,11 @@ nav {
     white-space: nowrap;
 }
 
+/* Show emoji before phone number on all sizes */
+.phone-number::before {
+    content: "📞 ";
+}
+
 /* Responsive navigation spacing */
 @media (max-width: 1300px) {
     .nav-links {
@@ -363,11 +368,13 @@ nav {
 @media (max-width: 1100px) {
     .phone-number {
         font-size: 0 !important;
+        color: transparent;
     }
     
     .phone-number::before {
         content: "📞";
         font-size: 1.5rem;
+        color: var(--primary-green);
     }
 }
 

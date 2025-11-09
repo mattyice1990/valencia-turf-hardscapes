@@ -2898,31 +2898,35 @@ footer {
     }
 
     .hero {
-        min-height: calc(100vh - 70px); /* Account for fixed header */
+        min-height: auto; /* Let content determine height */
         height: auto;
-        padding: 2rem 1rem 3rem;
+        padding: 1rem;
         display: flex;
         align-items: flex-start; /* Start from top on mobile so h1 is visible */
         justify-content: center;
-        padding-top: 4rem; /* Space from top of hero */
+        padding-top: 2rem; /* Reduced padding to show h1 */
+        padding-bottom: 3rem;
     }
 
     .hero h1 {
-        font-size: 1.8rem; /* 28.8px - readable without zoom */
-        line-height: 1.3;
+        font-size: 1.75rem; /* 28px - readable without zoom */
+        line-height: 1.25;
         word-break: break-word;
         margin-bottom: 1rem;
+        margin-top: 0;
     }
 
     .hero h2, .hero-subtitle {
-        font-size: 1.1rem; /* 17.6px - above 16px minimum */
+        font-size: 1rem; /* 16px minimum */
         line-height: 1.5;
+        margin-bottom: 1.5rem;
     }
     
     .hero-content {
         max-width: 100%;
         padding: 1rem;
         width: 100%;
+        margin-top: 0;
     }
 
     .page-hero {
@@ -3164,31 +3168,34 @@ footer {
     }
     
     .hero {
-        min-height: calc(100vh - 70px); /* Account for fixed header */
+        min-height: auto; /* Let content determine height */
         height: auto;
-        padding: 2rem 1rem 3rem;
+        padding: 1rem;
         display: flex;
         align-items: flex-start; /* Start from top on small mobile */
         justify-content: center;
-        padding-top: 3rem;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
     }
     
     .hero h1 {
         font-size: 1.5rem; /* 24px - readable without zoom */
         margin-bottom: 1rem;
-        line-height: 1.3;
+        line-height: 1.25;
         word-break: break-word;
+        margin-top: 0;
     }
     
     .hero h2, .hero-subtitle {
         font-size: 1rem; /* 16px minimum */
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         line-height: 1.5;
     }
     
     .hero-content {
         max-width: 100%;
         padding: 1rem 0.5rem;
+        margin-top: 0;
     }
     
     .page-hero {

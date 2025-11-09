@@ -1,0 +1,33 @@
+# Documentation
+*.md
+README.md
+ACCESSIBILITY.md
+ALL-PAGES-UPDATED.md
+BRAND-UPDATE.md
+CTA-BUTTON-FIX.md
+CTA-STRATEGY.md
+DESIGN-UPDATES.md
+GALLERY-UPDATE-SUMMARY.md
+HOMEPAGE-IMAGES-UPDATE.md
+HOMEPAGE-SEO-UPDATE.md
+INTERACTIVE-ELEMENTS-FIX.md
+INTERNAL-LINKS.md
+MOBILE-ACCESSIBILITY-IMPROVEMENTS.md
+SEO-PLAYBOOK-CHECKLIST.md
+SEO-Structure.md
+
+# Microsoft Office files
+*.docx
+*.xlsx
+*.pptx
+
+# Development files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Backup files
+*.backup
+*.bak
+

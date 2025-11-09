@@ -2900,10 +2900,11 @@ footer {
     .hero {
         min-height: calc(100vh - 70px); /* Account for fixed header */
         height: auto;
-        padding: 3rem 1rem;
+        padding: 2rem 1rem 3rem;
         display: flex;
-        align-items: center;
+        align-items: flex-start; /* Start from top on mobile so h1 is visible */
         justify-content: center;
+        padding-top: 4rem; /* Space from top of hero */
     }
 
     .hero h1 {
@@ -3165,7 +3166,11 @@ footer {
     .hero {
         min-height: calc(100vh - 70px); /* Account for fixed header */
         height: auto;
-        padding: 2rem 1rem;
+        padding: 2rem 1rem 3rem;
+        display: flex;
+        align-items: flex-start; /* Start from top on small mobile */
+        justify-content: center;
+        padding-top: 3rem;
     }
     
     .hero h1 {

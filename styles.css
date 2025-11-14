@@ -911,6 +911,11 @@ section {
         max-width: 300px;
         padding: 1rem 1.5rem;
     }
+    
+    .keyword-tag {
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+    }
 }
 
 /* Service Areas Page */
@@ -2044,6 +2049,39 @@ footer {
     color: var(--accent-tan);
     margin-bottom: 1rem;
     font-weight: 700;
+}
+
+/* Service Keywords Tags */
+.service-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.keyword-tag {
+    display: inline-block;
+    background: var(--light-gray);
+    color: var(--dark-gray);
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.keyword-tag:hover {
+    background: var(--white);
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 /* Gallery Page Styles */

@@ -416,9 +416,15 @@ function initializeMobileMenu() {
             }
         });
 
-        // Close menu when clicking a link
+        // Close menu when clicking a link (except dropdown triggers)
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                // Don't close if this is a dropdown trigger
+                if (link.closest('.has-dropdown') && !link.closest('.dropdown-menu')) {
+                    return; // Let the dropdown handler manage this
+                }
+                
+                // Close menu for regular links
                 navLinks.classList.remove('mobile-active');
                 mobileMenuBtn.textContent = '☰';
                 mobileMenuBtn.setAttribute('aria-expanded', 'false');
@@ -605,43 +611,61 @@ function initializeDropdowns() {
         
         // Toggle dropdown on click
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+            // On mobile (when menu is vertical), toggle the dropdown
+            const isMobile = window.innerWidth <= 900;
             
-            // If this dropdown is already active, close it
-            if (activeDropdown === dropdown && dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-                activeDropdown = null;
-            } else {
-                // Close any other open dropdowns
-                document.querySelectorAll('.dropdown-menu').forEach(d => {
-                    d.style.display = 'none';
-                });
+            if (isMobile) {
+                e.preventDefault();
+                e.stopPropagation();
                 
-                // Open this dropdown
+                // Toggle this dropdown
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                } else {
+                    dropdown.style.display = 'block';
+                }
+            } else {
+                // On desktop, prevent default and toggle
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // If this dropdown is already active, close it
+                if (activeDropdown === dropdown && dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                    activeDropdown = null;
+                } else {
+                    // Close any other open dropdowns
+                    document.querySelectorAll('.dropdown-menu').forEach(d => {
+                        d.style.display = 'none';
+                    });
+                    
+                    // Open this dropdown
+                    dropdown.style.display = 'block';
+                    activeDropdown = dropdown;
+                }
+            }
+        });
+        
+        // Also show on hover (for desktop only)
+        trigger.addEventListener('mouseenter', function() {
+            if (window.innerWidth > 900) {
                 dropdown.style.display = 'block';
                 activeDropdown = dropdown;
             }
         });
-        
-        // Also show on hover (for desktop)
-        trigger.addEventListener('mouseenter', function() {
-            dropdown.style.display = 'block';
-            activeDropdown = dropdown;
-        });
     });
     
-    // Close dropdown on scroll
+    // Close dropdown on scroll (desktop only)
     window.addEventListener('scroll', function() {
-        if (activeDropdown) {
+        if (window.innerWidth > 900 && activeDropdown) {
             activeDropdown.style.display = 'none';
             activeDropdown = null;
         }
     });
     
-    // Close dropdown when clicking outside
+    // Close dropdown when clicking outside (desktop only)
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.has-dropdown')) {
+        if (window.innerWidth > 900 && !e.target.closest('.has-dropdown')) {
             document.querySelectorAll('.dropdown-menu').forEach(d => {
                 d.style.display = 'none';
             });

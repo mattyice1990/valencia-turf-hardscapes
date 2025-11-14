@@ -1,4 +1,4 @@
-// Gallery Filter with "View More" functionality - shows 5 items at a time
+// Gallery Filter with "View More" functionality - shows 6 items at a time
 function initializeGalleryFilter() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryGrid = document.querySelector('.gallery-grid-large');
@@ -6,7 +6,7 @@ function initializeGalleryFilter() {
     
     if (!galleryGrid || galleryItems.length === 0) return;
     
-    const ITEMS_PER_PAGE = 5;
+    const ITEMS_PER_PAGE = 6;
     let currentFilter = 'all';
     let viewMoreBtn = null;
     

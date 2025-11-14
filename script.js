@@ -593,6 +593,54 @@ function initializeGalleryLightbox() {
 }
 
 // ========================================
+// SERVICE ACCORDION
+// ========================================
+function initializeServiceAccordion() {
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', function(e) {
+            e.preventDefault();
+            const accordionItem = this.parentElement;
+            const accordionContent = accordionItem.querySelector('.accordion-content');
+            const toggle = this.querySelector('.accordion-toggle');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            // Find the parent accordion container
+            const parentAccordion = this.closest('.service-accordion');
+            
+            // Close other accordion items in the same container only
+            if (parentAccordion) {
+                parentAccordion.querySelectorAll('.accordion-item').forEach(item => {
+                    if (item !== accordionItem) {
+                        const otherHeader = item.querySelector('.accordion-header');
+                        const otherContent = item.querySelector('.accordion-content');
+                        const otherToggle = item.querySelector('.accordion-toggle');
+                        if (otherHeader && otherContent && otherToggle) {
+                            otherHeader.setAttribute('aria-expanded', 'false');
+                            otherContent.style.maxHeight = null;
+                            otherToggle.textContent = '+';
+                        }
+                    }
+                });
+            }
+            
+            // Toggle current accordion item
+            if (isExpanded) {
+                this.setAttribute('aria-expanded', 'false');
+                accordionContent.style.maxHeight = '0';
+                toggle.textContent = '+';
+            } else {
+                this.setAttribute('aria-expanded', 'true');
+                // Use a generous max-height to ensure all content shows
+                accordionContent.style.maxHeight = (accordionContent.scrollHeight + 50) + 'px';
+                toggle.textContent = '−';
+            }
+        });
+    });
+}
+
+// ========================================
 // MASTER INITIALIZATION
 // ========================================
 // Run all initialization functions when DOM is ready
@@ -607,6 +655,7 @@ function initializeAll() {
     initializeStickyCTA();
     initializeBackToTop();
     initializeGalleryLightbox();
+    initializeServiceAccordion();
 }
 
 // Check if DOM is already loaded

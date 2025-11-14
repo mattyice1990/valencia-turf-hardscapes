@@ -431,12 +431,12 @@ nav {
     .has-dropdown .dropdown-menu {
         position: static;
         display: none;
-        background: rgba(255,255,255,0.1);
+        background: var(--light-tan);
         border: none;
         box-shadow: none;
-        margin: 0;
+        margin: 0.5rem 0;
         padding: 0;
-        border-radius: 0;
+        border-radius: 5px;
     }
     
     .has-dropdown .dropdown-menu li {
@@ -445,13 +445,14 @@ nav {
     
     .has-dropdown .dropdown-menu a {
         padding: 1rem 2rem;
-        color: var(--white);
+        color: var(--text-on-light);
         font-size: 1rem;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     
     .has-dropdown .dropdown-menu a:hover {
-        background: rgba(255,255,255,0.2);
+        background: var(--primary-green);
+        color: var(--white);
         padding-left: 2.5rem;
     }
 }

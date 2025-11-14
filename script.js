@@ -694,19 +694,20 @@ function initializeDropdowns() {
                 e.preventDefault();
                 e.stopPropagation();
                 
+                const isCurrentlyOpen = dropdown.style.display === 'block';
+                
+                // Close any other open dropdowns first
+                document.querySelectorAll('.dropdown-menu').forEach(d => {
+                    d.style.display = 'none';
+                });
+                
                 // Toggle this dropdown
-                if (dropdown.style.display === 'block') {
-                    dropdown.style.display = 'none';
-                    activeDropdown = null;
-                } else {
-                    // Close any other open dropdowns
-                    document.querySelectorAll('.dropdown-menu').forEach(d => {
-                        d.style.display = 'none';
-                    });
-                    
-                    // Open this dropdown
+                if (!isCurrentlyOpen) {
                     dropdown.style.display = 'block';
                     activeDropdown = dropdown;
+                } else {
+                    dropdown.style.display = 'none';
+                    activeDropdown = null;
                 }
             });
         }
@@ -719,14 +720,23 @@ function initializeDropdowns() {
             if (window.innerWidth > 900) {
                 dropdown.style.display = 'block';
                 activeDropdown = dropdown;
+                trigger.dataset.hovered = 'true';
             }
         });
         
-        // Hide on mouse leave (for desktop only)
+        // Hide on mouse leave (for desktop only) - only if not clicked open
         trigger.addEventListener('mouseleave', function() {
             if (window.innerWidth > 900) {
-                dropdown.style.display = 'none';
-                activeDropdown = null;
+                trigger.dataset.hovered = 'false';
+                // Small delay to allow clicking dropdown items
+                setTimeout(() => {
+                    if (trigger.dataset.hovered === 'false') {
+                        dropdown.style.display = 'none';
+                        if (activeDropdown === dropdown) {
+                            activeDropdown = null;
+                        }
+                    }
+                }, 100);
             }
         });
     });
@@ -741,7 +751,11 @@ function initializeDropdowns() {
     
     // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.has-dropdown')) {
+        // Don't close if clicking inside the dropdown area or toggle button
+        const clickedDropdown = e.target.closest('.has-dropdown');
+        const clickedMenu = e.target.closest('.dropdown-menu');
+        
+        if (!clickedDropdown && !clickedMenu) {
             document.querySelectorAll('.dropdown-menu').forEach(d => {
                 d.style.display = 'none';
             });

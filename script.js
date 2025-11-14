@@ -455,17 +455,29 @@ function initializeMobileMenu() {
     }
 }
 
-// Sticky CTA - Show after scrolling down
+// Sticky CTA - Show after scrolling down, hide when at form
 function initializeStickyCTA() {
     const stickyCTA = document.getElementById('sticky-cta');
+    const estimateForm = document.getElementById('estimate-form');
+    
     if (stickyCTA) {
         let lastScroll = 0;
         
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
             
-            // Show sticky CTA after scrolling 500px down
-            if (currentScroll > 500) {
+            // Check if user is scrolled to the estimate form section
+            let isAtForm = false;
+            if (estimateForm) {
+                const formRect = estimateForm.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Hide CTA if form is visible in viewport
+                isAtForm = formRect.top < windowHeight && formRect.bottom > 0;
+            }
+            
+            // Show sticky CTA after scrolling 500px down, but hide if at form
+            if (currentScroll > 500 && !isAtForm) {
                 stickyCTA.classList.add('visible');
             } else {
                 stickyCTA.classList.remove('visible');
@@ -476,15 +488,29 @@ function initializeStickyCTA() {
     }
 }
 
-// Back to Top Button
+// Back to Top Button - Show only after scrolling 1/3 of page
 function initializeBackToTop() {
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {
+        // Click handler
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+        
+        // Scroll handler - show only after 1/3 of page height
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset;
+            const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const oneThirdOfPage = pageHeight / 3;
+            
+            if (scrollPosition > oneThirdOfPage) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
         });
     }
 }

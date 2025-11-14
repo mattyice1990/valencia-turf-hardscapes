@@ -2061,6 +2061,13 @@ footer {
     padding: 1rem 0;
 }
 
+.project-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 1.5rem 0;
+}
+
 .keyword-tag {
     display: inline-block;
     background: var(--light-gray);

@@ -685,24 +685,34 @@ function initializeDropdowns() {
     
     dropdownTriggers.forEach(trigger => {
         const dropdown = trigger.querySelector('.dropdown-menu');
-        const link = trigger.querySelector('a');
+        const link = trigger.querySelector('.dropdown-link');
+        const toggleBtn = trigger.querySelector('.dropdown-toggle');
         
-        // On mobile, toggle dropdown on click but allow navigation
-        link.addEventListener('click', function(e) {
-            const isMobile = window.innerWidth <= 900;
-            
-            if (isMobile) {
-                // Only prevent navigation if clicking to toggle dropdown
-                // If dropdown is already open, let the link navigate
-                if (dropdown.style.display !== 'block') {
-                    e.preventDefault();
-                    e.stopPropagation();
+        // Toggle button click handler - toggles dropdown
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Toggle this dropdown
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                    activeDropdown = null;
+                } else {
+                    // Close any other open dropdowns
+                    document.querySelectorAll('.dropdown-menu').forEach(d => {
+                        d.style.display = 'none';
+                    });
+                    
+                    // Open this dropdown
                     dropdown.style.display = 'block';
+                    activeDropdown = dropdown;
                 }
-            }
-            // On desktop, don't prevent default - let the link navigate normally
-            // Dropdown will show on hover instead
-        });
+            });
+        }
+        
+        // Link click handler - let it navigate normally (no preventDefault)
+        // The link will navigate to index.html#services
         
         // Show on hover (for desktop only)
         trigger.addEventListener('mouseenter', function() {
@@ -721,17 +731,17 @@ function initializeDropdowns() {
         });
     });
     
-    // Close dropdown on scroll (desktop only)
+    // Close dropdown on scroll
     window.addEventListener('scroll', function() {
-        if (window.innerWidth > 900 && activeDropdown) {
+        if (activeDropdown) {
             activeDropdown.style.display = 'none';
             activeDropdown = null;
         }
     });
     
-    // Close dropdown when clicking outside (desktop only)
+    // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
-        if (window.innerWidth > 900 && !e.target.closest('.has-dropdown')) {
+        if (!e.target.closest('.has-dropdown')) {
             document.querySelectorAll('.dropdown-menu').forEach(d => {
                 d.style.display = 'none';
             });

@@ -766,7 +766,8 @@ function initializeLadderSteps() {
     ladderSteps.forEach(step => {
         const header = step.querySelector('.step-header');
         
-        header.addEventListener('click', () => {
+        const handleToggle = (e) => {
+            e.preventDefault();
             const isActive = step.classList.contains('active');
             
             // Close all other steps
@@ -776,7 +777,11 @@ function initializeLadderSteps() {
             if (!isActive) {
                 step.classList.add('active');
             }
-        });
+        };
+        
+        // Add both click and touch events for mobile
+        header.addEventListener('click', handleToggle);
+        header.addEventListener('touchstart', handleToggle, { passive: false });
     });
 }
 

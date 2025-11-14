@@ -567,7 +567,7 @@ nav {
     justify-content: center;
     text-align: center;
     color: var(--white);
-    margin-top: 105px;
+    margin-top: 200px; /* Increased to account for larger logo */
     position: relative;
     overflow: hidden;
     padding: 2rem 1rem;
@@ -1794,7 +1794,7 @@ footer {
 @media (max-width: 1024px) {
     .services-nav-sticky,
     .resources-nav-sticky {
-        top: 96px; /* Match mobile header height */
+        top: 140px; /* Match mobile header height with larger logo */
     }
 }
 
@@ -3085,16 +3085,16 @@ footer {
     
     /* Fix hero margin to match actual header height on mobile */
     .hero {
-        margin-top: 96px; /* Match mobile header height */
+        margin-top: 140px; /* Increased to account for larger logo on mobile */
     }
     
     .nav-links {
         position: fixed;
-        top: 96px; /* Match actual header height */
+        top: 140px; /* Match actual header height with larger logo */
         right: -100%;
         width: 80%;
         max-width: 350px;
-        height: calc(100vh - 96px);
+        height: calc(100vh - 140px);
         background: var(--light-tan);
         flex-direction: column;
         align-items: flex-start;
@@ -3207,7 +3207,7 @@ footer {
     .hero {
         min-height: auto; /* Let content determine height */
         height: auto;
-        padding: 5rem 1rem 3rem; /* Increased top padding to prevent h1 cutoff by header */
+        padding: 2rem 1rem 3rem; /* Hero starts below fixed header via margin-top */
         display: flex;
         align-items: flex-start; /* Start from top on mobile so h1 is visible */
         justify-content: center;
@@ -3486,7 +3486,7 @@ footer {
     .hero {
         min-height: auto; /* Let content determine height */
         height: auto;
-        padding: 5rem 1rem 3rem; /* Increased top padding to prevent h1 cutoff by header */
+        padding: 2rem 1rem 3rem; /* Hero starts below fixed header via margin-top */
         display: flex;
         align-items: flex-start; /* Start from top on small mobile */
         justify-content: center;
@@ -3827,7 +3827,7 @@ footer {
     
     .hero {
         min-height: calc(100vh - 60px);
-        padding: 5rem 0.75rem 2rem; /* Increased top padding to prevent h1 cutoff by header */
+        padding: 2rem 0.75rem 2rem; /* Hero starts below fixed header via margin-top */
         box-sizing: border-box;
     }
     
@@ -3892,7 +3892,7 @@ footer {
 
 @media (max-width: 1024px) {
     .breadcrumb {
-        top: 96px; /* Match mobile header height */
+        top: 140px; /* Match mobile header height with larger logo */
     }
 }
 
@@ -3937,7 +3937,7 @@ footer {
 
 @media (max-width: 768px) {
     .breadcrumb {
-        top: 96px; /* Match mobile header height */
+        top: 140px; /* Match mobile header height with larger logo */
         padding: 0.5rem 4%;
         font-size: 0.85rem;
     }

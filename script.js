@@ -687,48 +687,36 @@ function initializeDropdowns() {
         const dropdown = trigger.querySelector('.dropdown-menu');
         const link = trigger.querySelector('a');
         
-        // Toggle dropdown on click
+        // On mobile, toggle dropdown on click but allow navigation
         link.addEventListener('click', function(e) {
-            // On mobile (when menu is vertical), toggle the dropdown
             const isMobile = window.innerWidth <= 900;
             
             if (isMobile) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // Toggle this dropdown
-                if (dropdown.style.display === 'block') {
-                    dropdown.style.display = 'none';
-                } else {
+                // Only prevent navigation if clicking to toggle dropdown
+                // If dropdown is already open, let the link navigate
+                if (dropdown.style.display !== 'block') {
+                    e.preventDefault();
+                    e.stopPropagation();
                     dropdown.style.display = 'block';
-                }
-            } else {
-                // On desktop, prevent default and toggle
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // If this dropdown is already active, close it
-                if (activeDropdown === dropdown && dropdown.style.display === 'block') {
-                    dropdown.style.display = 'none';
-                    activeDropdown = null;
-                } else {
-                    // Close any other open dropdowns
-                    document.querySelectorAll('.dropdown-menu').forEach(d => {
-                        d.style.display = 'none';
-                    });
-                    
-                    // Open this dropdown
-                    dropdown.style.display = 'block';
-                    activeDropdown = dropdown;
                 }
             }
+            // On desktop, don't prevent default - let the link navigate normally
+            // Dropdown will show on hover instead
         });
         
-        // Also show on hover (for desktop only)
+        // Show on hover (for desktop only)
         trigger.addEventListener('mouseenter', function() {
             if (window.innerWidth > 900) {
                 dropdown.style.display = 'block';
                 activeDropdown = dropdown;
+            }
+        });
+        
+        // Hide on mouse leave (for desktop only)
+        trigger.addEventListener('mouseleave', function() {
+            if (window.innerWidth > 900) {
+                dropdown.style.display = 'none';
+                activeDropdown = null;
             }
         });
     });

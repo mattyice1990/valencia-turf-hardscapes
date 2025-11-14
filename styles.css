@@ -2801,10 +2801,12 @@ footer {
 .form-group textarea {
     width: 100%;
     padding: 0.8rem;
-    border: 2px solid var(--light-gray);
+    border: 2px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
     font-family: inherit;
+    background: #f9f9f7;
+    color: var(--dark-gray);
 }
 
 .form-group input:focus,
@@ -4388,7 +4390,7 @@ footer {
     max-width: 800px;
     margin: 2rem auto;
     padding: 2.5rem;
-    background: var(--white);
+    background: #fafaf8;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -4416,10 +4418,12 @@ footer {
 .form-group select,
 .form-group textarea {
     padding: 0.875rem;
-    border: 2px solid var(--light-gray);
+    border: 2px solid #ddd;
     border-radius: 6px;
     font-size: 1rem;
     font-family: inherit;
+    background: #f9f9f7;
+    color: var(--dark-gray);
     transition: all 0.3s ease;
 }
 

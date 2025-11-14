@@ -1757,7 +1757,7 @@ footer {
     justify-content: center;
     text-align: center;
     color: var(--white);
-    margin-top: 70px;
+    margin-top: 200px; /* Match homepage hero - adjusted for logo size */
     padding: 3rem 2rem;
 }
 
@@ -3097,6 +3097,10 @@ footer {
     /* Fix hero margin to match actual header height on mobile */
     .hero {
         margin-top: 140px; /* Adjusted for smaller logo on mobile (120px) */
+    }
+    
+    .page-hero {
+        margin-top: 140px; /* Match hero section for inner pages */
     }
     
     .nav-links {

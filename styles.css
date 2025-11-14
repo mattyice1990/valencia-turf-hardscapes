@@ -577,10 +577,11 @@ nav {
     justify-content: center;
     text-align: center;
     color: var(--white);
-    margin-top: 200px; /* Adjusted for smaller logo (180px) */
+    margin-top: 220px; /* Adjusted for 180px logo plus contact bar */
     position: relative;
     overflow: hidden;
     padding: 2rem 1rem;
+    z-index: 1; /* Ensure hero stays below fixed header (z-index: 1000) */
 }
 
 .hero::before {
@@ -1758,8 +1759,10 @@ footer {
     justify-content: center;
     text-align: center;
     color: var(--white);
-    margin-top: 200px; /* Match homepage hero - adjusted for logo size */
+    margin-top: 220px; /* Match homepage hero - adjusted for 180px logo plus contact bar */
     padding: 3rem 2rem;
+    position: relative;
+    z-index: 1; /* Ensure page hero stays below fixed header (z-index: 1000) */
 }
 
 .page-hero .hero-content {
@@ -3148,10 +3151,6 @@ footer {
         height: 80px;
     }
     
-    nav {
-        padding: 0.5rem 3%;
-    }
-    
     .service-detail-container,
     .featured-project,
     .calculator-container,
@@ -3165,10 +3164,6 @@ footer {
     
     .service-detail-images {
         order: -1;
-    }
-    
-    nav {
-        padding: 1rem 3%;
     }
     
     section {

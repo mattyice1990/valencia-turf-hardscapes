@@ -3207,7 +3207,7 @@ footer {
     .hero {
         min-height: auto; /* Let content determine height */
         height: auto;
-        padding: 3.5rem 1rem 3rem; /* Increased top padding to prevent h1 cutoff */
+        padding: 5rem 1rem 3rem; /* Increased top padding to prevent h1 cutoff by header */
         display: flex;
         align-items: flex-start; /* Start from top on mobile so h1 is visible */
         justify-content: center;
@@ -3486,7 +3486,7 @@ footer {
     .hero {
         min-height: auto; /* Let content determine height */
         height: auto;
-        padding: 3.5rem 1rem 3rem; /* Increased top padding to prevent h1 cutoff */
+        padding: 5rem 1rem 3rem; /* Increased top padding to prevent h1 cutoff by header */
         display: flex;
         align-items: flex-start; /* Start from top on small mobile */
         justify-content: center;
@@ -3827,7 +3827,7 @@ footer {
     
     .hero {
         min-height: calc(100vh - 60px);
-        padding: 3.5rem 0.75rem 2rem; /* Increased top padding to prevent h1 cutoff */
+        padding: 5rem 0.75rem 2rem; /* Increased top padding to prevent h1 cutoff by header */
         box-sizing: border-box;
     }
     

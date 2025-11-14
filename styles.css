@@ -4141,38 +4141,113 @@ footer {
     align-items: center;
 }
 
-/* Install Grid */
-.install-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
+/* Animated Ladder Steps */
+.install-ladder {
+    max-width: 700px;
+    margin: 3rem auto;
+    position: relative;
+    padding-left: 40px;
 }
 
-.install-step {
-    padding: 1.5rem;
+/* Vertical line connecting steps */
+.install-ladder::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    bottom: 20px;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--primary-green), var(--light-green));
+    border-radius: 2px;
+}
+
+.ladder-step {
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
     background: var(--white);
     border: 2px solid var(--light-gray);
-    border-radius: 8px;
+    border-radius: 12px;
+    cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-.install-step:hover {
+.step-header:hover {
     border-color: var(--primary-green);
-    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.1);
-    transform: translateY(-5px);
+    transform: translateX(8px);
+    box-shadow: 0 4px 16px rgba(27, 94, 32, 0.15);
 }
 
-.install-step h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
+.step-number {
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-green);
+    color: var(--white);
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.ladder-step.active .step-number {
+    background: var(--sunset-orange);
+    animation: pulse 0.5s ease;
+}
+
+.step-header h3 {
+    flex: 1;
+    margin: 0;
+    font-size: 1.2rem;
     color: var(--primary-green);
 }
 
-.install-step p {
+.expand-icon {
+    font-size: 1.8rem;
+    color: var(--primary-green);
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.ladder-step.active .expand-icon {
+    transform: rotate(45deg);
+    color: var(--sunset-orange);
+}
+
+.step-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease, margin 0.4s ease;
+    padding: 0 1.5rem;
+    margin: 0;
+}
+
+.ladder-step.active .step-content {
+    max-height: 500px;
+    padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+    margin-top: 0.5rem;
+}
+
+.step-content p {
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--text-on-light);
+    margin: 0;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 /* Local Content */
@@ -4599,9 +4674,27 @@ footer {
         height: 200px;
     }
     
-    .install-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .install-ladder {
+        padding-left: 20px;
+    }
+    
+    .install-ladder::before {
+        left: 5px;
+    }
+    
+    .step-header {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+    
+    .step-header h3 {
+        font-size: 1rem;
+    }
+    
+    .step-number {
+        min-width: 35px;
+        height: 35px;
+        font-size: 1rem;
     }
     
     .local-content {

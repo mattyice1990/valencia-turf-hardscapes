@@ -756,6 +756,31 @@ function initializeServiceAccordion() {
 }
 
 // ========================================
+// ANIMATED LADDER STEPS
+// ========================================
+function initializeLadderSteps() {
+    const ladderSteps = document.querySelectorAll('.ladder-step');
+    
+    if (ladderSteps.length === 0) return;
+    
+    ladderSteps.forEach(step => {
+        const header = step.querySelector('.step-header');
+        
+        header.addEventListener('click', () => {
+            const isActive = step.classList.contains('active');
+            
+            // Close all other steps
+            ladderSteps.forEach(s => s.classList.remove('active'));
+            
+            // Toggle current step
+            if (!isActive) {
+                step.classList.add('active');
+            }
+        });
+    });
+}
+
+// ========================================
 // MASTER INITIALIZATION
 // ========================================
 // Run all initialization functions when DOM is ready
@@ -767,6 +792,7 @@ function initializeAll() {
     initializeFAQ();
     initializeContactForm();
     initializeMobileMenu();
+    initializeLadderSteps();
     initializeStickyCTA();
     initializeBackToTop();
     initializeGalleryLightbox();

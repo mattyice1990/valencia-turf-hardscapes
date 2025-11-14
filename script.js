@@ -1,24 +1,85 @@
-// Gallery Filter (works for both home page and gallery page)
+// Gallery Filter with "View More" functionality - shows 5 items at a time
 function initializeGalleryFilter() {
     const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryGrid = document.querySelector('.gallery-grid-large');
     const galleryItems = document.querySelectorAll('.gallery-item, .gallery-item-large');
-
+    
+    if (!galleryGrid || galleryItems.length === 0) return;
+    
+    const ITEMS_PER_PAGE = 5;
+    let currentFilter = 'all';
+    let viewMoreBtn = null;
+    
+    // Create view more button
+    function createViewMoreButton() {
+        if (viewMoreBtn) {
+            viewMoreBtn.remove();
+        }
+        
+        const container = document.createElement('div');
+        container.className = 'view-more-container';
+        
+        const btn = document.createElement('button');
+        btn.className = 'view-more-btn';
+        btn.textContent = 'View More';
+        btn.setAttribute('aria-label', 'Load more gallery images');
+        
+        container.appendChild(btn);
+        galleryGrid.appendChild(container);
+        viewMoreBtn = btn;
+        
+        return btn;
+    }
+    
+    // Show items based on filter and limit
+    function updateGalleryDisplay(filter, showAll = false) {
+        let visibleCount = 0;
+        let hiddenCount = 0;
+        
+        galleryItems.forEach(item => {
+            const categories = item.dataset.category ? item.dataset.category.split(' ') : [];
+            const matchesFilter = filter === 'all' || categories.includes(filter);
+            
+            if (matchesFilter) {
+                if (showAll || visibleCount < ITEMS_PER_PAGE) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                    hiddenCount++;
+                }
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        
+        // Remove existing button
+        if (viewMoreBtn) {
+            viewMoreBtn.parentElement.remove();
+            viewMoreBtn = null;
+        }
+        
+        // Show "View More" button if there are hidden items
+        if (hiddenCount > 0 && !showAll) {
+            const btn = createViewMoreButton();
+            btn.addEventListener('click', () => {
+                updateGalleryDisplay(currentFilter, true);
+            });
+        }
+    }
+    
+    // Initialize with first filter showing only 5 items
+    updateGalleryDisplay('all', false);
+    
+    // Filter button click handlers
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             // Remove active class from all buttons
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            const filter = btn.dataset.filter;
-
-            galleryItems.forEach(item => {
-                const categories = item.dataset.category ? item.dataset.category.split(' ') : [];
-                if (filter === 'all' || categories.includes(filter)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+            
+            currentFilter = btn.dataset.filter;
+            updateGalleryDisplay(currentFilter, false);
         });
     });
 }
@@ -530,10 +591,10 @@ function initializeGalleryLightbox() {
     let currentIndex = 0;
     let visibleItems = [];
     
-    // Update visible items based on current filter
+    // Update visible items based on current filter and display
     function updateVisibleItems() {
         visibleItems = Array.from(galleryItems).filter(item => {
-            return item.style.display !== 'none';
+            return item.style.display !== 'none' && item.offsetParent !== null;
         });
     }
     
@@ -546,21 +607,12 @@ function initializeGalleryLightbox() {
         if (!item) return;
         
         const img = item.querySelector('img');
-        const overlay = item.querySelector('.gallery-overlay');
         
         lightboxImage.src = img.src;
-        lightboxImage.alt = img.alt;
+        lightboxImage.alt = img.alt || 'Gallery image';
         
-        if (overlay) {
-            const title = overlay.querySelector('h3');
-            const description = overlay.querySelector('p');
-            lightboxCaption.innerHTML = `
-                ${title ? `<h3>${title.textContent}</h3>` : ''}
-                ${description ? `<p>${description.textContent}</p>` : ''}
-            `;
-        } else {
-            lightboxCaption.innerHTML = '';
-        }
+        // Simple caption with just the alt text
+        lightboxCaption.innerHTML = img.alt ? `<p>${img.alt}</p>` : '';
         
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';

@@ -905,6 +905,12 @@ section {
     .testimonial-text {
         font-size: 1rem;
     }
+    
+    .view-more-btn {
+        width: 100%;
+        max-width: 300px;
+        padding: 1rem 1.5rem;
+    }
 }
 
 /* Service Areas Page */
@@ -2050,6 +2056,37 @@ footer {
     padding: 2rem 5%;
 }
 
+.view-more-container {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.view-more-btn {
+    background: var(--primary-green);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border: 2px solid var(--primary-green);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.view-more-btn:hover {
+    background: var(--light-green);
+    border-color: var(--light-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
+}
+
+.view-more-btn:focus {
+    outline: 3px solid var(--accent-tan);
+    outline-offset: 2px;
+}
+
 .gallery-item-large {
     position: relative;
     height: 350px;
@@ -2070,33 +2107,9 @@ footer {
     object-fit: cover;
 }
 
+/* Gallery overlay removed - no hover effects */
 .gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.95));
-    color: var(--white);
-    padding: 2rem 1.5rem 1.5rem;
-    transform: translateY(60%);
-    transition: transform 0.3s;
-}
-
-.gallery-item-large:hover .gallery-overlay {
-    transform: translateY(0);
-}
-
-.gallery-overlay h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: var(--white) !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-}
-
-.gallery-overlay p {
-    color: var(--white) !important;
-    opacity: 1;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    display: none;
 }
 
 .featured-projects {

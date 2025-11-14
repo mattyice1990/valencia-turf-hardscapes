@@ -1807,7 +1807,7 @@ footer {
 @media (max-width: 1024px) {
     .services-nav-sticky,
     .resources-nav-sticky {
-        top: 160px; /* Match mobile header height with smaller logo */
+        top: 190px; /* Match mobile header height with smaller logo */
     }
 }
 
@@ -3100,20 +3100,20 @@ footer {
     
     /* Fix hero margin to match actual header height on mobile */
     .hero {
-        margin-top: 160px; /* Adjusted for 80px logo + orange contact bar + padding */
+        margin-top: 190px; /* Increased to ensure hero starts below header completely */
     }
     
     .page-hero {
-        margin-top: 160px; /* Match hero section for inner pages */
+        margin-top: 190px; /* Match hero section for inner pages */
     }
     
     .nav-links {
         position: fixed;
-        top: 160px; /* Match actual header height with smaller logo */
+        top: 190px; /* Match actual header height with smaller logo */
         right: -100%;
         width: 80%;
         max-width: 350px;
-        height: calc(100vh - 160px);
+        height: calc(100vh - 190px);
         background: var(--light-tan);
         flex-direction: column;
         align-items: flex-start;
@@ -3907,7 +3907,7 @@ footer {
 
 @media (max-width: 1024px) {
     .breadcrumb {
-        top: 130px; /* Match mobile header height with smaller logo */
+        top: 190px; /* Match mobile header height with smaller logo */
     }
 }
 
@@ -3952,7 +3952,7 @@ footer {
 
 @media (max-width: 768px) {
     .breadcrumb {
-        top: 160px; /* Match mobile header height with smaller logo */
+        top: 190px; /* Match mobile header height with smaller logo */
         padding: 0.5rem 4%;
         font-size: 0.85rem;
     }

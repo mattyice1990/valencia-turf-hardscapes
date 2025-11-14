@@ -11,16 +11,29 @@
 <body>
     <!-- Header & Navigation -->
     <header role="banner">
+        <!-- Top Contact Bar -->
+        <div class="top-contact-bar">
+            <div class="contact-info">
+                <a href="mailto:Landscapedesigner55@gmail.com" class="top-email">Landscapedesigner55@gmail.com</a>
+                <span class="separator">|</span>
+                <a href="tel:5209077795" class="top-phone">(520) 907-7795</a>
+            </div>
+        </div>
+        
         <nav role="navigation" aria-label="Main navigation">
             <div class="logo">
                 <img src="images/ValenciaTurfNewLogo.png" alt="Valencia Turf & Hardscapes - Artificial Turf and Paver Installation in Tucson">
             </div>
             <ul class="nav-links" role="menubar" aria-label="Main menu">
                 <li role="none"><a href="index.html" role="menuitem">Home</a></li>
-                <li role="none"><a href="index.html#services" role="menuitem">Services</a></li>
+                <li role="none" class="has-dropdown">
+                    <a href="index.html#services" role="menuitem">Services ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="service-areas.html">Service Areas</a></li>
+                    </ul>
+                </li>
                 <li role="none"><a href="gallery.html" class="active" role="menuitem" aria-current="page">Gallery</a></li>
                 <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
-                <li role="none"><a href="tel:5209077795" class="phone-number" role="menuitem" aria-label="Call us at 520-907-7795">(520) 907-7795</a></li>
                 <li role="none"><a href="contact.html" class="cta-btn" role="menuitem">Free Estimate</a></li>
             </ul>
             <button class="mobile-menu-btn" 

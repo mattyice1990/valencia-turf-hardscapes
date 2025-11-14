@@ -593,14 +593,75 @@ function initializeGalleryLightbox() {
 }
 
 // ========================================
+// DROPDOWN MENU HANDLING
+// ========================================
+function initializeDropdowns() {
+    const dropdownTriggers = document.querySelectorAll('.has-dropdown');
+    let activeDropdown = null;
+    
+    dropdownTriggers.forEach(trigger => {
+        const dropdown = trigger.querySelector('.dropdown-menu');
+        const link = trigger.querySelector('a');
+        
+        // Toggle dropdown on click
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // If this dropdown is already active, close it
+            if (activeDropdown === dropdown && dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+                activeDropdown = null;
+            } else {
+                // Close any other open dropdowns
+                document.querySelectorAll('.dropdown-menu').forEach(d => {
+                    d.style.display = 'none';
+                });
+                
+                // Open this dropdown
+                dropdown.style.display = 'block';
+                activeDropdown = dropdown;
+            }
+        });
+        
+        // Also show on hover (for desktop)
+        trigger.addEventListener('mouseenter', function() {
+            dropdown.style.display = 'block';
+            activeDropdown = dropdown;
+        });
+    });
+    
+    // Close dropdown on scroll
+    window.addEventListener('scroll', function() {
+        if (activeDropdown) {
+            activeDropdown.style.display = 'none';
+            activeDropdown = null;
+        }
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.dropdown-menu').forEach(d => {
+                d.style.display = 'none';
+            });
+            activeDropdown = null;
+        }
+    });
+}
+
+// ========================================
 // SERVICE ACCORDION
 // ========================================
 function initializeServiceAccordion() {
     const accordionHeaders = document.querySelectorAll('.accordion-header');
     
     accordionHeaders.forEach(header => {
-        header.addEventListener('click', function(e) {
+        // Add both click and touchstart for mobile compatibility
+        const handleToggle = function(e) {
             e.preventDefault();
+            e.stopPropagation();
+            
             const accordionItem = this.parentElement;
             const accordionContent = accordionItem.querySelector('.accordion-content');
             const toggle = this.querySelector('.accordion-toggle');
@@ -618,7 +679,7 @@ function initializeServiceAccordion() {
                         const otherToggle = item.querySelector('.accordion-toggle');
                         if (otherHeader && otherContent && otherToggle) {
                             otherHeader.setAttribute('aria-expanded', 'false');
-                            otherContent.style.maxHeight = null;
+                            otherContent.style.maxHeight = '0';
                             otherToggle.textContent = '+';
                         }
                     }
@@ -632,11 +693,15 @@ function initializeServiceAccordion() {
                 toggle.textContent = '+';
             } else {
                 this.setAttribute('aria-expanded', 'true');
-                // Use a generous max-height to ensure all content shows
-                accordionContent.style.maxHeight = (accordionContent.scrollHeight + 50) + 'px';
+                // Use scrollHeight + extra padding for all content
+                accordionContent.style.maxHeight = (accordionContent.scrollHeight + 100) + 'px';
                 toggle.textContent = '−';
             }
-        });
+        };
+        
+        // Add both click and touchstart events for mobile
+        header.addEventListener('click', handleToggle);
+        header.addEventListener('touchstart', handleToggle, { passive: false });
     });
 }
 
@@ -656,6 +721,7 @@ function initializeAll() {
     initializeBackToTop();
     initializeGalleryLightbox();
     initializeServiceAccordion();
+    initializeDropdowns();
 }
 
 // Check if DOM is already loaded

@@ -266,6 +266,41 @@ a:hover, a:focus {
     }
 }
 
+/* Top Contact Bar */
+.top-contact-bar {
+    background: var(--primary-green);
+    padding: 0.5rem 5%;
+    text-align: right;
+}
+
+.contact-info {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.top-email,
+.top-phone {
+    color: var(--sunset-orange);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.top-email:hover,
+.top-phone:hover {
+    color: var(--white);
+}
+
+.separator {
+    color: var(--white);
+    font-weight: 300;
+}
+
 /* Header & Navigation */
 header {
     position: fixed;
@@ -321,26 +356,51 @@ nav {
     color: var(--primary-green);
 }
 
-.phone-number {
-    color: var(--primary-green);
-    font-weight: bold;
-    font-size: 1.1rem;
-    white-space: nowrap;
+/* Dropdown Menu */
+.has-dropdown {
+    position: relative;
 }
 
-/* Show emoji before phone number on all sizes */
-.phone-number::before {
-    content: "📞 ";
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    border: 2px solid var(--primary-green);
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    min-width: 180px;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    z-index: 1001;
+    list-style: none;
 }
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: var(--text-on-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.dropdown-menu a:hover {
+    background: var(--light-tan);
+    color: var(--primary-green);
+    padding-left: 1.5rem;
+}
+
 
 /* Responsive navigation spacing */
 @media (max-width: 1300px) {
     .nav-links {
         gap: 1.5rem;
-    }
-    
-    .phone-number {
-        font-size: 1rem;
     }
 }
 
@@ -354,6 +414,35 @@ nav {
     }
 }
 
+@media (max-width: 900px) {
+    .top-email {
+        display: none;
+    }
+    
+    .separator {
+        display: none;
+    }
+    
+    .contact-info {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-contact-bar {
+        padding: 0.4rem 4%;
+    }
+    
+    .contact-info {
+        font-size: 0.75rem;
+        gap: 0.5rem;
+    }
+    
+    .top-phone {
+        font-size: 0.8rem;
+    }
+}
+
 @media (max-width: 1150px) {
     .logo img {
         height: 100px;
@@ -364,19 +453,6 @@ nav {
     }
 }
 
-/* Hide phone number text before hamburger appears to prevent cramping */
-@media (max-width: 1100px) {
-    .phone-number {
-        font-size: 0 !important;
-        color: transparent;
-    }
-    
-    .phone-number::before {
-        content: "📞";
-        font-size: 1.5rem;
-        color: var(--primary-green);
-    }
-}
 
 .cta-btn {
     background: var(--sunset-orange);
@@ -457,11 +533,12 @@ nav {
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
                 url('images/hero-grass-bg.jpg') center/cover;
     display: flex;
+    padding-top: 50px;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: var(--white);
-    margin-top: 70px;
+    margin-top: 105px;
     position: relative;
     overflow: hidden;
     padding: 2rem 1rem;
@@ -787,6 +864,58 @@ section {
     
     .testimonial-text {
         font-size: 1rem;
+    }
+}
+
+/* Service Areas Page */
+.service-area-intro {
+    padding: 4rem 5%;
+    background: var(--white);
+}
+
+.primary-areas {
+    padding: 4rem 5%;
+    background: var(--light-tan);
+}
+
+.area-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.area-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--accent-tan);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.area-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    border-color: var(--light-green);
+}
+
+.area-card h3 {
+    color: var(--primary-green);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.area-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-on-light);
+}
+
+@media (max-width: 768px) {
+    .area-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }
 
@@ -4561,6 +4690,9 @@ footer {
     cursor: pointer;
     text-align: left;
     transition: all 0.3s ease;
+    -webkit-tap-highlight-color: rgba(102, 155, 55, 0.2);
+    touch-action: manipulation;
+    user-select: none;
 }
 
 .accordion-header:hover {
@@ -4648,15 +4780,22 @@ footer {
     }
     
     .accordion-header {
-        padding: 0.875rem 1.25rem;
+        padding: 1.125rem 1.25rem;
+        min-height: 52px; /* Ensure proper touch target */
+        -webkit-tap-highlight-color: rgba(102, 155, 55, 0.2);
+        cursor: pointer;
+        touch-action: manipulation;
     }
     
     .accordion-title {
         font-size: 0.875rem;
+        user-select: none;
     }
     
     .accordion-toggle {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        padding: 0.25rem 0.5rem;
+        user-select: none;
     }
     
     .accordion-content p {

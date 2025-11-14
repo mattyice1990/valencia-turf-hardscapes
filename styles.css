@@ -306,7 +306,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--light-tan);
+    background: var(--accent-tan);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 1000;
     transition: all 0.3s ease;
@@ -332,7 +332,7 @@ nav {
 }
 
 .logo img {
-    height: 180px;
+    height: 240px;
     width: auto;
     display: block;
 }
@@ -366,7 +366,7 @@ nav {
     position: absolute;
     top: 100%;
     left: 0;
-    background: var(--light-tan);
+    background: var(--accent-tan);
     border: 2px solid var(--primary-green);
     border-radius: 5px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -431,7 +431,7 @@ nav {
     .has-dropdown .dropdown-menu {
         position: static;
         display: none;
-        background: var(--light-tan);
+        background: rgba(0,0,0,0.1);
         border: none;
         box-shadow: none;
         margin: 0.5rem 0;
@@ -474,7 +474,7 @@ nav {
 
 @media (max-width: 1150px) {
     .logo img {
-        height: 150px;
+        height: 200px;
     }
     
     .nav-links {
@@ -567,7 +567,7 @@ nav {
     justify-content: center;
     text-align: center;
     color: var(--white);
-    margin-top: 200px; /* Increased to account for larger logo */
+    margin-top: 260px; /* Increased to account for even larger logo (240px) */
     position: relative;
     overflow: hidden;
     padding: 2rem 1rem;
@@ -1794,7 +1794,7 @@ footer {
 @media (max-width: 1024px) {
     .services-nav-sticky,
     .resources-nav-sticky {
-        top: 140px; /* Match mobile header height with larger logo */
+        top: 180px; /* Match mobile header height with larger logo */
     }
 }
 
@@ -3085,17 +3085,17 @@ footer {
     
     /* Fix hero margin to match actual header height on mobile */
     .hero {
-        margin-top: 140px; /* Increased to account for larger logo on mobile */
+        margin-top: 180px; /* Increased to account for larger logo on mobile (160px) */
     }
     
     .nav-links {
         position: fixed;
-        top: 140px; /* Match actual header height with larger logo */
+        top: 180px; /* Match actual header height with larger logo */
         right: -100%;
         width: 80%;
         max-width: 350px;
-        height: calc(100vh - 140px);
-        background: var(--light-tan);
+        height: calc(100vh - 180px);
+        background: var(--accent-tan);
         flex-direction: column;
         align-items: flex-start;
         padding: 2rem;
@@ -3129,7 +3129,7 @@ footer {
     }
 
     .logo img {
-        height: 120px;
+        height: 160px;
     }
     
     .service-detail-container,
@@ -3200,7 +3200,7 @@ footer {
     }
 
     .logo img {
-        height: 100px;
+        height: 130px;
         max-width: 100%;
     }
 
@@ -3475,7 +3475,7 @@ footer {
     }
     
     .logo img {
-        height: 100px;
+        height: 130px;
         max-width: 90%;
     }
     
@@ -3778,7 +3778,7 @@ footer {
     }
     
     .logo img {
-        height: 80px;
+        height: 110px;
     }
 }
 
@@ -3855,7 +3855,7 @@ footer {
     }
     
     .logo img {
-        height: 90px;
+        height: 120px;
         max-width: 80%;
     }
     
@@ -3892,7 +3892,7 @@ footer {
 
 @media (max-width: 1024px) {
     .breadcrumb {
-        top: 140px; /* Match mobile header height with larger logo */
+        top: 180px; /* Match mobile header height with larger logo */
     }
 }
 
@@ -3937,7 +3937,7 @@ footer {
 
 @media (max-width: 768px) {
     .breadcrumb {
-        top: 140px; /* Match mobile header height with larger logo */
+        top: 180px; /* Match mobile header height with larger logo */
         padding: 0.5rem 4%;
         font-size: 0.85rem;
     }
